@@ -1,0 +1,172 @@
+{
+    "swagger": "2.0",
+"info": {
+    "title": "Cat Facts API",
+    "description": "This API provides endpoints to get random cat facts. <a target='_blank' href='https://documenter.getpostman.com/view/1946054/S11HvKSz'>See Postman Docs</a>",
+    "version": "1.0.0"
+},
+"host": "catfact.ninja",
+"basePath": "/",
+"schemes": [
+    "https"
+],
+"paths": {
+    "/breeds": {
+        "get": {
+            "tags": [
+                "Breeds"
+            ],
+            "summary": "Returns a list of breeds",
+            "description": "returns a list of breeds",
+            "operationId": "breed",
+            "produces": [
+                "application/json"
+            ],
+            "parameters": [
+                {
+                    "name": "limit",
+                    "in": "query",
+                    "description": "limit the number of results. Max is 1000 per page",
+                    "required": false,
+                    "type": "integer",
+                    "default": 1
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "successful operation",
+                    "schema": {
+                        "$ref": "#/definitions/Breed"
+                    }
+                }
+            }
+        }
+    },
+    "/fact": {
+        "get": {
+            "tags": [
+                "Facts"
+            ],
+            "summary": "Returns a random cat fact",
+            "description": "returns a random cat fact",
+            "operationId": "fact",
+            "produces": [
+                "application/json"
+            ],
+            "parameters": [
+                {
+                    "name": "max_length",
+                    "in": "query",
+                    "description": "limits the length of the facts returned",
+                    "required": false,
+                    "type": "integer"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "successful operation",
+                    "schema": {
+                        "$ref": "#/definitions/CatFact"
+                    }
+                }
+            }
+        }
+    },
+    "/facts": {
+        "get": {
+            "tags": [
+                "Facts"
+            ],
+            "summary": "Get a list of cat facts",
+            "description": "Get a list of cat facts",
+            "operationId": "facts",
+            "produces": [
+                "application/json"
+            ],
+            "parameters": [
+                {
+                    "name": "limit",
+                    "in": "query",
+                    "description": "limit the number of results. Max is 1000 per page",
+                    "required": false,
+                    "type": "integer",
+                    "default": 1
+                },
+                {
+                    "name": "max_length",
+                    "in": "query",
+                    "description": "limits the length of the facts returned",
+                    "required": false,
+                    "type": "integer"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "successful operation",
+                    "schema": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/CatFact"
+                        }
+                    }
+                }
+            }
+        }
+    }
+},
+"definitions": {
+    "APIResponse": {
+        "type": "object"
+    },
+    "Breed": {
+        "required": [
+            "breed"
+        ],
+        "properties": {
+            "breed": {
+                "type": "string",
+                "format": "string"
+            },
+            "country": {
+                "type": "string",
+                "format": "string"
+            },
+            "origin": {
+                "type": "string",
+                "format": "string"
+            },
+            "coat": {
+                "type": "string",
+                "format": "string"
+            },
+            "pattern": {
+                "type": "string",
+                "format": "string"
+            }
+        },
+        "type": "object",
+        "xml": {
+            "name": "Breed"
+        }
+    },
+    "CatFact": {
+        "required": [
+            "fact"
+        ],
+        "properties": {
+            "fact": {
+                "type": "string",
+                "format": "string"
+            },
+            "length": {
+                "type": "integer",
+                "format": "int"
+            }
+        },
+        "type": "object",
+        "xml": {
+            "name": "CatFact"
+        }
+    }
+}
+}
